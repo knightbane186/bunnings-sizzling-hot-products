@@ -12,7 +12,7 @@ export function PeriodLeaderCard({
         <View style={styles.labelGroup}>
           <View style={styles.flameTile}>
             <Image
-              source={require("../../readme/flame.png")}
+              source={require("../assets/flame.png")}
               style={styles.flameIcon}
               resizeMode="contain"
             />
