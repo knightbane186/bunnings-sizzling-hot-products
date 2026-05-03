@@ -4,7 +4,7 @@ export function AppHeader() {
   return (
     <View style={styles.header}>
       <Image
-        source={require("../../readme/bunnings-logo.jpg")}
+        source={require("../assets/bunnings-logo.jpg")}
         style={styles.bunningsLogo}
         resizeMode="contain"
       />
@@ -15,7 +15,6 @@ export function AppHeader() {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   header: {
     alignItems: "center",

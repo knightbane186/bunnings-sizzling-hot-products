@@ -4,7 +4,7 @@ export function BrandPanel() {
   return (
     <View style={styles.brandPanel}>
       <Image
-        source={require("../../readme/logo.png")}
+        source={require("../assets/logo.png")}
         style={styles.assignmentLogo}
         resizeMode="cover"
       />

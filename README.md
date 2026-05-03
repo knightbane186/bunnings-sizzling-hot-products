@@ -260,7 +260,7 @@ The original challenge brief is kept below for context.
 
 <h1 align="center">
   <br> 
-  <img src="readme/logo.png" width="800" alt="Bunnings Take Home Assignment" />
+  <img src="src/assets/logo.png" width="800" alt="Bunnings Take Home Assignment" />
   <br>  <br>
   Sizzling Hot Products
   <br>
