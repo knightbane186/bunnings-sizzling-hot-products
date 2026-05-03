@@ -33,7 +33,7 @@ export default function App() {
           <StatusView message="Loading sizzling hot products..." />
         ) : error ? (
           <StatusView
-            message="Unable to load products"
+            message="Unable to load products. Please check that the API server is running."
             detail={error}
             onRetry={refetch}
           />

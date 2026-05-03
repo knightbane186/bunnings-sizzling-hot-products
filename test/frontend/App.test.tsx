@@ -72,7 +72,11 @@ describe("App", () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByText("Unable to load products")).toBeTruthy();
+      expect(
+        screen.getByText(
+          "Unable to load products. Please check that the API server is running."
+        )
+      ).toBeTruthy();
     });
 
     expect(screen.getByText("Network down")).toBeTruthy();
