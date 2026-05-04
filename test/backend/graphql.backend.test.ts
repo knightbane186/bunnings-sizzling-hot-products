@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 import path from "node:path";
-import { executeSizzlingHotProductsQuery } from "../../src/graphql/schema";
+import { executeSizzlingHotProductsQuery } from "../../src/server/graphql/schema";
 
 describe("GraphQL API", () => {
   test("Given the sizzlingHotProducts query, When it runs, Then it returns daily and period winners", async () => {

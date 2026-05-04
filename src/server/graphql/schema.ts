@@ -1,6 +1,6 @@
 import { buildSchema, graphql } from "graphql";
 import { loadInputs } from "../io/inputLoader";
-import { getSizzlingHotProducts } from "../services/sizzlingHotProductsService";
+import { getSizzlingHotProducts } from "../../core/services/sizzlingHotProductsService";
 
 export const schema = buildSchema(`
   type DailySizzlingHotProduct {
@@ -28,10 +28,7 @@ export const schema = buildSchema(`
   }
 `);
 
-export function createRootValue(options: {
-  inputDirectory: string;
-  today?: string;
-}) {
+export function createRootValue(options: { inputDirectory: string; today?: string }) {
   return {
     sizzlingHotProducts: () => {
       const inputs = loadInputs(options.inputDirectory);

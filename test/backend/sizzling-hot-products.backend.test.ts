@@ -1,12 +1,12 @@
 import { describe, expect, test } from "@jest/globals";
 import path from "node:path";
-import { Order, Product } from "../../src/domain/types";
-import { loadInputs } from "../../src/io/inputLoader";
+import { Order, Product } from "../../src/core/domain/types";
+import { loadInputs } from "../../src/server/io/inputLoader";
 import {
   getProductTotals,
   getSizzlingHotProducts,
   getTopProductForPeriod
-} from "../../src/services/sizzlingHotProductsService";
+} from "../../src/core/services/sizzlingHotProductsService";
 
 const inputs = loadInputs(path.resolve(__dirname, "..", "..", "inputs"));
 
@@ -18,9 +18,7 @@ describe("Sizzling hot products service", () => {
       today: "23/04/2026"
     });
 
-    expect(
-      results.daily.map((result) => [result.date, result.productName])
-    ).toEqual([
+    expect(results.daily.map((result) => [result.date, result.productName])).toEqual([
       ["21/04/2026", "Ezy Storage 37L Flexi Laundry Basket - White"],
       ["22/04/2026", "Ezy Storage 37L Flexi Laundry Basket - White"],
       ["23/04/2026", "Arlec 160W Crystalline Solar Foldable Charging Kit"]

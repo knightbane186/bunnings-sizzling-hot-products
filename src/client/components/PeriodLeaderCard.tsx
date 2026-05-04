@@ -1,11 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { PeriodSizzlingHotProductDto } from "../api/sizzlingHotProductsClient";
 
-export function PeriodLeaderCard({
-  period
-}: {
-  period: PeriodSizzlingHotProductDto;
-}) {
+export function PeriodLeaderCard({ period }: { period: PeriodSizzlingHotProductDto }) {
   return (
     <View style={styles.periodPanel}>
       <View style={styles.periodHeading}>
