@@ -1,5 +1,6 @@
 import http from "node:http";
 import { defaultInputDirectory } from "../io/inputLoader";
+import { logger } from "../logger";
 import { executeSizzlingHotProductsQuery } from "./schema";
 
 const DEFAULT_QUERY = `{
@@ -36,6 +37,7 @@ async function handleGraphqlRequest(
   request: http.IncomingMessage,
   response: http.ServerResponse
 ): Promise<void> {
+  const startedAt = Date.now();
   const headers = {
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
@@ -70,6 +72,10 @@ async function handleGraphqlRequest(
 
   response.writeHead(200, headers);
   response.end(JSON.stringify(result, null, 2));
+  logger.info("GraphQL request completed", {
+    method: request.method,
+    durationMs: Date.now() - startedAt
+  });
 }
 
 export function startGraphqlServer(port = 4000, host = "127.0.0.1"): http.Server {
@@ -84,6 +90,11 @@ export function startGraphqlServer(port = 4000, host = "127.0.0.1"): http.Server
     }
 
     handleGraphqlRequest(request, response).catch((error: unknown) => {
+      logger.error("GraphQL request failed", {
+        method: request.method,
+        url: request.url,
+        message: error instanceof Error ? error.message : "Unknown error"
+      });
       response.writeHead(500, {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json"
@@ -97,15 +108,14 @@ export function startGraphqlServer(port = 4000, host = "127.0.0.1"): http.Server
   });
 
   server.listen(port, host, () => {
-    console.log(`GraphQL server ready at http://${host}:${port}/graphql`);
+    logger.info("GraphQL server ready", {
+      url: `http://${host}:${port}/graphql`
+    });
   });
 
   return server;
 }
 
 if (require.main === module) {
-  startGraphqlServer(
-    Number(process.env.PORT ?? 4000),
-    process.env.HOST ?? "0.0.0.0"
-  );
+  startGraphqlServer(Number(process.env.PORT ?? 4000), process.env.HOST ?? "0.0.0.0");
 }

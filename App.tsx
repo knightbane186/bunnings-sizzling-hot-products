@@ -1,18 +1,12 @@
 import Constants from "expo-constants";
 import { StatusBar } from "expo-status-bar";
-import {
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View
-} from "react-native";
-import { AppHeader } from "./src/components/AppHeader";
-import { BrandPanel } from "./src/components/BrandPanel";
-import { DailyResultRow } from "./src/components/DailyResultRow";
-import { PeriodLeaderCard } from "./src/components/PeriodLeaderCard";
-import { StatusView } from "./src/components/StatusView";
-import { useSizzlingHotProducts } from "./src/hooks/useSizzlingHotProducts";
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from "react-native";
+import { AppHeader } from "./src/client/components/AppHeader";
+import { BrandPanel } from "./src/client/components/BrandPanel";
+import { DailyResultRow } from "./src/client/components/DailyResultRow";
+import { PeriodLeaderCard } from "./src/client/components/PeriodLeaderCard";
+import { StatusView } from "./src/client/components/StatusView";
+import { useSizzlingHotProducts } from "./src/client/hooks/useSizzlingHotProducts";
 
 export default function App() {
   const { data, error, loading, refreshing, refetch } = useSizzlingHotProducts();
@@ -22,9 +16,7 @@ export default function App() {
       <StatusBar style="light" />
       <ScrollView
         contentContainerStyle={styles.container}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={refetch} />
-        }
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refetch} />}
       >
         <AppHeader />
         <BrandPanel />

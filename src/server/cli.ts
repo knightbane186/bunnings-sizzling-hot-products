@@ -4,9 +4,9 @@ import path from "node:path";
 import {
   SizzlingHotPeriodResult,
   SizzlingHotProductsResult
-} from "./domain/types";
+} from "../core/domain/types";
 import { defaultInputDirectory, loadInputs } from "./io/inputLoader";
-import { getSizzlingHotProducts } from "./services/sizzlingHotProductsService";
+import { getSizzlingHotProducts } from "../core/services/sizzlingHotProductsService";
 
 interface CliOptions {
   json: boolean;

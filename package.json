@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.node.json",
     "start": "expo start",
-    "cli": "npm run build && node dist/src/cli.js",
-    "api": "npm run build && node dist/src/graphql/server.js",
+    "cli": "npm run build && node dist/src/server/cli.js",
+    "api": "npm run build && node dist/src/server/graphql/server.js",
     "ios": "expo start --ios",
     "android": "expo start --android",
     "test": "jest"
@@ -38,9 +38,6 @@
   "jest": {
     "preset": "jest-expo",
     "watchman": false,
-    "setupFilesAfterEnv": [
-      "<rootDir>/test/setup/jest.setup.ts"
-    ],
     "testMatch": [
       "**/test/**/*.test.ts",
       "**/test/**/*.test.tsx"

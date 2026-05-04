@@ -56,10 +56,7 @@ export function isDateInRange(
   );
 }
 
-export function getInclusiveDateRange(
-  startDate: string,
-  endDate: string
-): string[] {
+export function getInclusiveDateRange(startDate: string, endDate: string): string[] {
   const dates: string[] = [];
   let cursor = parseDate(startDate);
   const endTime = parseDate(endDate).getTime();

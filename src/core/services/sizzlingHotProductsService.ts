@@ -22,9 +22,7 @@ function createProductCatalog(products: Product[]): Map<string, string> {
 
 function getCancelledOrderIds(orders: Order[]): Set<string> {
   return new Set(
-    orders
-      .filter((order) => order.status === "cancelled")
-      .map((order) => order.orderId)
+    orders.filter((order) => order.status === "cancelled").map((order) => order.orderId)
   );
 }
 
@@ -52,6 +50,10 @@ function getUniqueProductIds(
   return [...productIds];
 }
 
+/**
+ * Totals qualified product sales for a date range after applying cancellations,
+ * same-order deduplication, and same-customer same-day deduplication.
+ */
 export function getProductTotals({
   products,
   orders,
@@ -99,6 +101,9 @@ export function getProductTotals({
     });
 }
 
+/**
+ * Picks the highest-selling product for a period, using product name as the tie-breaker.
+ */
 export function getTopProductForPeriod({
   products,
   orders,
@@ -123,6 +128,9 @@ export function getTopProductForPeriod({
   };
 }
 
+/**
+ * Calculates the top product for each calendar day in the requested range.
+ */
 export function getDailyTopProducts({
   products,
   orders,
@@ -152,6 +160,9 @@ export function getDailyTopProducts({
   });
 }
 
+/**
+ * Returns all daily winners plus the 3-day sizzling hot product for the fixed challenge date.
+ */
 export function getSizzlingHotProducts({
   products,
   orders,
