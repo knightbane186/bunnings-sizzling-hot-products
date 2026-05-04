@@ -27,6 +27,20 @@ React Native, Node.js, and GraphQL solution for calculating the Bunnings Sizzlin
 - [Design decisions and trade-offs](docs/tradeoffs.md)
 - [Git workflow](docs/workflow.md)
 
+## Architecture
+
+```mermaid
+flowchart TD
+  Inputs["inputs/products.json + inputs/orders.json"] --> Loader["server/io input loader"]
+  Loader --> Schema["server/graphql resolver"]
+  Schema --> Service["core/services business rules"]
+  Service --> Schema
+  Schema --> ClientApi["client/api GraphQL client"]
+  ClientApi --> Hook["client/hooks useSizzlingHotProducts"]
+  Hook --> Screen["React Native screen"]
+  Service --> Cli["server/cli terminal output"]
+```
+
 ## How To Run
 
 Install dependencies:
